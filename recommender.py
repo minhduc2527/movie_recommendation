@@ -36,7 +36,7 @@ utility = np.zeros((n_users, n_items))
 for r in rating:
     utility[r.user_id - 1][r.item_id - 1] = r.rating
 
-print utility
+print(utility)
 
 test = np.zeros((n_users, n_items))
 for r in rating_test:
@@ -100,9 +100,9 @@ for i in range(0, n_users):
             sys.stdout.write("\rGenerating Similarity Matrix [%d:%d] = %f" % (i+1, j+1, pcs_matrix[i][j]))
             sys.stdout.flush()
             time.sleep(0.00005)
-print "\rGenerating Similarity Matrix [%d:%d] = %f" % (i+1, j+1, pcs_matrix[i][j])
+print("\rGenerating Similarity Matrix [%d:%d] = %f" % (i+1, j+1, pcs_matrix[i][j]))
 
-print pcs_matrix
+print(pcs_matrix)
 
 # Guesses the ratings that user with id, user_id, might give to item with id, i_id.
 # We will consider the top_n similar users to do this.
@@ -146,9 +146,9 @@ for i in range(0, n_users):
             sys.stdout.flush()
             time.sleep(0.00005)
             utility_copy[i][j] = guess(i+1, j+1, 150)
-print "\rGuessing [User:Rating] = [%d:%d]" % (i, j)
+print("\rGuessing [User:Rating] = [%d:%d]" % (i, j))
 
-print utility_copy
+print(utility_copy)
 
 pickle.dump( utility_copy, open("utility_matrix.pkl", "wb"))
 
@@ -164,4 +164,4 @@ for i in range(0, n_users):
             y_pred.append(utility_copy[i][cluster.labels_[j]-1])
 f.close()
 
-print "Mean Squared Error: %f" % mean_squared_error(y_true, y_pred)
+print("Mean Squared Error: %f" % mean_squared_error(y_true, y_pred))
